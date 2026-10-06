@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Angel Chopra | Finance & Accounting Student</title>
+
+    <style>
+        /* ---------- Basic page styling ---------- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fb;
+            color: #172033;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .container {
+            width: min(1050px, 92%);
+            margin: auto;
+        }
+
+        /* ---------- Header section ---------- */
+        header {
+            background: #102a43;
+            color: white;
+            padding: 70px 20px;
+        }
+
+        .hero {
+            display: flex;
+            align-items: center;
+            gap: 35px;
+            max-width: 1050px;
+            margin: auto;
+        }
+
+        .profile-photo {
+            width: 145px;
+            height: 145px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            background: #ffffff;
+            flex-shrink: 0;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            margin-bottom: 8px;
+        }
+
+        .hero h2 {
+            font-size: 1.25rem;
+            font-weight: normal;
+            color: #d9e6f2;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            max-width: 650px;
+            color: #e8f0f7;
+        }
+
+        /* ---------- Main sections ---------- */
+        section {
+            padding: 55px 0;
+        }
+
+        section:nth-child(even) {
+            background: white;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #102a43;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 45px;
+            height: 4px;
+            background: #2f80ed;
+            margin-top: 8px;
+            border-radius: 5px;
+        }
+
+        .about-text {
+            max-width: 850px;
+            color: #475569;
+        }
+
+        /* ---------- Skills ---------- */
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .skill-tag {
+            background: #e8f1fb;
+            color: #102a43;
+            padding: 9px 16px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            border: 1px solid #cddfed;
+        }
+
+        /* ---------- Education and qualification cards ---------- */
+        .card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 18px;
+            box-shadow: 0 5px 18px rgba(15, 23, 42, 0.05);
+        }
+
+        section:nth-child(even) .card {
+            background: #f9fbfd;
+        }
+
+        .card h3 {
+            color: #102a43;
+            margin-bottom: 5px;
+        }
+
+        .date {
+            color: #2f80ed;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #526273;
+        }
+
+        .card ul {
+            padding-left: 20px;
+            color: #526273;
+            margin-top: 10px;
+        }
+
+        /* ---------- Connect section ---------- */
+        .connect-section {
+            text-align: center;
+            background: #102a43 !important;
+            color: white;
+        }
+
+        .connect-section h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .connect-section p {
+            color: #d9e6f2;
+            margin-bottom: 25px;
+        }
+
+        .connect-btn {
+            border: none;
+            background: #2f80ed;
+            color: white;
+            padding: 15px 35px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .connect-btn:hover {
+            transform: translateY(-2px);
+            background: #1f6fd1;
+        }
+
+        /* ---------- Footer ---------- */
+        footer {
+            background: #0b1f33;
+            color: #b8c7d6;
+            text-align: center;
+            padding: 25px 15px;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #8ec5ff;
+            text-decoration: none;
+        }
+
+        /* ---------- Pop-up background ---------- */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.65);
+            z-index: 1000;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ---------- Pop-up form ---------- */
+        .modal-content {
+            background: white;
+            width: min(520px, 100%);
+            border-radius: 14px;
+            padding: 30px;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+            max-height: 95vh;
+            overflow-y: auto;
+        }
+
+        .modal-content h2 {
+            color: #102a43;
+            margin-bottom: 5px;
+        }
+
+        .modal-subtitle {
+            color: #64748b;
+            margin-bottom: 22px;
+            font-size: 0.92rem;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            border: none;
+            background: transparent;
+            font-size: 28px;
+            cursor: pointer;
+            color: #64748b;
+            line-height: 1;
+        }
+
+        .form-group {
+            margin-bottom: 17px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 7px;
+            color: #26384a;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            border: 1px solid #cbd5e1;
+            border-radius: 7px;
+            padding: 12px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #2f80ed;
+            box-shadow: 0 0 0 3px rgba(47, 128, 237, 0.12);
+        }
+
+        .form-group textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        /* ---------- Phone input ---------- */
+        .phone-wrapper {
+            display: flex;
+            gap: 8px;
+        }
+
+        .country-box {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            border: 1px solid #cbd5e1;
+            border-radius: 7px;
+            padding: 0 7px;
+            background: white;
+            flex-shrink: 0;
+        }
+
+        .country-box img {
+            width: 24px;
+            height: 18px;
+            object-fit: cover;
+        }
+
+        .country-box select {
+            border: none;
+            outline: none;
+            background: transparent;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .phone-wrapper input {
+            flex: 1;
+            min-width: 0;
+        }
+
+        /* ---------- Form messages ---------- */
+        .error-message {
+            display: none;
+            color: #dc2626;
+            font-size: 0.82rem;
+            margin-top: 5px;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .success-message {
+            display: none;
+            background: #ecfdf5;
+            color: #047857;
+            border: 1px solid #a7f3d0;
+            padding: 12px;
+            border-radius: 7px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .submit-btn {
+            width: 100%;
+            border: none;
+            background: #102a43;
+            color: white;
+            padding: 13px;
+            border-radius: 7px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background: #173e5f;
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        /* ---------- Mobile design ---------- */
+        @media (max-width: 650px) {
+            header {
+                padding: 50px 20px;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-photo {
+                width: 125px;
+                height: 125px;
+            }
+
+            section {
+                padding: 40px 0;
+            }
+
+            .modal-content {
+                padding: 25px 20px;
+            }
+
+            .phone-wrapper {
+                flex-direction: column;
+            }
+
+            .country-box {
+                width: 100%;
+                height: 45px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ---------- Header ---------- -->
+    <header>
+        <div class="hero">
+            <img
+                src="profile.jpg"
+                alt="Angel Chopra"
+                class="profile-photo"
+            >
+
+            <div>
+                <h1>Angel Chopra</h1>
+                <h2>Finance &amp; Accounting Student</h2>
+                <p>
+                    B.Com in Applied Finance and Analytics with ACCA,
+                    building a strong foundation in accounting, finance
+                    and analytical thinking.
+                </p>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- ---------- About section ---------- -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About</h2>
+
+            <p class="about-text">
+                Finance and accounting student pursuing B.Com in Applied
+                Finance and Analytics with ACCA at Chandigarh University,
+                in collaboration with Grant Thornton. Building a strong
+                foundation in accounting, financial concepts and analytical
+                thinking, with working knowledge of Microsoft Excel.
+                Motivated to gain practical exposure through internships
+                and learn from industry professionals while preparing for
+                the ACCA qualification.
+            </p>
+        </div>
+    </section>
+
+
+    <!-- ---------- Skills section ---------- -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Skills</h2>
+
+            <div class="skills">
+                <span class="skill-tag">Financial Accounting</span>
+                <span class="skill-tag">Microsoft Excel</span>
+                <span class="skill-tag">Microsoft Word</span>
+                <span class="skill-tag">Analytical Thinking</span>
+                <span class="skill-tag">Continuous Learning</span>
+                <span class="skill-tag">Business Fundamentals</span>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ---------- Education section ---------- -->
+    <section id="education">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+
+            <div class="card">
+                <h3>Chandigarh University</h3>
+                <div class="date">July 2026 – 2030</div>
+
+                <p>
+                    B.Com in Applied Finance and Analytics with ACCA,
+                    in collaboration with Grant Thornton (GSFA Department)
+                </p>
+
+                <ul>
+                    <li>
+                        Integrated degree pathway combining B.Com (Hons.)
+                        coursework with ACCA qualification preparation
+                    </li>
+                    <li>
+                        Focus areas: Accounting, Finance, Analytics
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Mount Carmel School</h3>
+                <div class="date">March 2024 – March 2026</div>
+
+                <p>Class 12, Commerce Stream</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ---------- Professional qualification section ---------- -->
+    <section id="qualification">
+        <div class="container">
+            <h2 class="section-title">Professional Qualification</h2>
+
+            <div class="card">
+                <h3>ACCA</h3>
+                <div class="date">
+                    Association of Chartered Certified Accountants — In Progress
+                </div>
+
+                <p>
+                    Preparing for the ACCA qualification alongside B.Com studies.
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ---------- Career objective section ---------- -->
+    <section id="objective">
+        <div class="container">
+            <h2 class="section-title">Career Objective</h2>
+
+            <p class="about-text">
+                Seeking internship or entry-level exposure in accounting
+                and finance to connect classroom knowledge with real-world
+                financial practice and grow into a well-rounded finance
+                professional.
+            </p>
+        </div>
+    </section>
+
+
+    <!-- ---------- Connect section ---------- -->
+    <section class="connect-section">
+        <div class="container">
+            <h2>Let's Connect</h2>
+
+            <p>
+                Have an enquiry or want to connect professionally?
+            </p>
+
+            <button
+                type="button"
+                class="connect-btn"
+                id="connectButton"
+            >
+                Connect with me
+            </button>
+        </div>
+    </section>
+
+
+    <!-- ---------- Footer ---------- -->
+    <footer>
+        <p>
+            Angel Chopra &nbsp;|&nbsp;
+            <a href="mailto:angelchopra2008@gmail.com">
+                angelchopra2008@gmail.com
+            </a>
+            &nbsp;|&nbsp;
+            <a
+                href="https://linkedin.com/in/angelchopra8"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                LinkedIn
+            </a>
+        </p>
+    </footer>
+
+
+    <!-- ---------- Enquiry pop-up ---------- -->
+    <div
+        class="modal"
+        id="enquiryModal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modalTitle"
+    >
+        <div class="modal-content">
+
+            <button
+                type="button"
+                class="close-btn"
+                id="closeButton"
+                aria-label="Close"
+            >
+                &times;
+            </button>
+
+            <h2 id="modalTitle">Connect with me</h2>
+
+            <p class="modal-subtitle">
+                Please fill in the details below.
+            </p>
+
+            <div
+                class="success-message"
+                id="successMessage"
+                role="status"
+            ></div>
+
+            <form id="enquiryForm" novalidate>
+
+                <!-- Full name -->
+                <div class="form-group">
+                    <label for="name">Full name</label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        required
+                        autocomplete="name"
+                    >
+                </div>
+
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label for="email">Email</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                        autocomplete="email"
+                    >
+
+                    <div
+                        class="error-message"
+                        id="emailError"
+                    >
+                        Please enter a valid email address.
+                    </div>
+                </div>
+
+
+                <!-- Mobile number -->
+                <div class="form-group">
+                    <label for="mobile">Mobile number</label>
+
+                    <div class="phone-wrapper">
+
+                        <div class="country-box">
+                            <img
+                                id="countryFlag"
+                                src="https://flagcdn.com/24x18/in.png"
+                                alt="Country flag"
+                            >
+
+                            <select
+                                id="countryCode"
+                                aria-label="Country code"
+                            >
+                                <option value="IN" data-dial="+91">
+                                    IN +91
+                                </option>
+                                <option value="US" data-dial="+1">
+                                    US +1
+                                </option>
+                                <option value="GB" data-dial="+44">
+                                    GB +44
+                                </option>
+                                <option value="AE" data-dial="+971">
+                                    AE +971
+                                </option>
+                                <option value="CA" data-dial="+1">
+                                    CA +1
+                                </option>
+                                <option value="AU" data-dial="+61">
+                                    AU +61
+                                </option>
+                                <option value="SG" data-dial="+65">
+                                    SG +65
+                                </option>
+                                <option value="SA" data-dial="+966">
+                                    SA +966
+                                </option>
+                                <option value="QA" data-dial="+974">
+                                    QA +974
+                                </option>
+                                <option value="NP" data-dial="+977">
+                                    NP +977
+                                </option>
+                                <option value="BD" data-dial="+880">
+                                    BD +880
+                                </option>
+                                <option value="LK" data-dial="+94">
+                                    LK +94
+                                </option>
+                                <option value="DE" data-dial="+49">
+                                    DE +49
+                                </option>
+                            </select>
+                        </div>
+
+                        <input
+                            type="tel"
+                            id="mobile"
+                            name="mobile"
+                            required
+                            inputmode="numeric"
+                            autocomplete="tel"
+                            pattern="[6-9][0-9]{9}"
+                        >
+                    </div>
+
+                    <div
+                        class="error-message"
+                        id="mobileError"
+                    ></div>
+                </div>
+
+
+                <!-- Enquiry -->
+                <div class="form-group">
+                    <label for="enquiry">Enquiry</label>
+
+                    <textarea
+                        id="enquiry"
+                        name="enquiry"
+                        required
+                    ></textarea>
+                </div>
+
+
+                <!-- Submit button -->
+                <button
+                    type="submit"
+                    class="submit-btn"
+                    id="submitButton"
+                >
+                    Submit
+                </button>
+
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+        /* ---------- Configuration values ---------- */
+
+        const IPINFO_TOKEN = "";
+
+        const WEBHOOK_URL = "PASTE_YOUR_N8N_WEBHOOK_URL_HERE";
+
+
+        /* ---------- Get the main form elements ---------- */
+
+        const connectButton = document.getElementById("connectButton");
+        const enquiryModal = document.getElementById("enquiryModal");
+        const closeButton = document.getElementById("closeButton");
+        const enquiryForm = document.getElementById("enquiryForm");
+
+        const countryCode = document.getElementById("countryCode");
+        const countryFlag = document.getElementById("countryFlag");
+        const mobileInput = document.getElementById("mobile");
+
+        const emailInput = document.getElementById("email");
+        const emailError = document.getElementById("emailError");
+        const mobileError = document.getElementById("mobileError");
+
+        const submitButton = document.getElementById("submitButton");
+        const successMessage = document.getElementById("successMessage");
+
+
+        /* ---------- Store visitor location information ---------- */
+
+        let visitorInfo = {
+            city: "",
+            region: "",
+            country: ""
+        };
+
+        let ipInfoLoaded = false;
+
+
+        /* ---------- Email validation rule ---------- */
+
+        const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+
+        /* ---------- Country information ---------- */
+
+        const countryOptions = Array.from(countryCode.options);
+
+
+        /* ---------- Update the flag and phone pattern ---------- */
+
+        function updateCountrySettings() {
+            const selectedOption =
+                countryCode.options[countryCode.selectedIndex];
+
+            const selectedCountry = selectedOption.value.toLowerCase();
+
+            countryFlag.src =
+                "https://flagcdn.com/24x18/" +
+                selectedCountry +
+                ".png";
+
+            countryFlag.alt =
+                selectedOption.value + " country flag";
+
+            if (selectedOption.value === "IN") {
+                mobileInput.pattern = "[6-9][0-9]{9}";
+                mobileInput.maxLength = 10;
+                mobileError.textContent =
+                    "India: enter exactly 10 digits starting with 6, 7, 8 or 9.";
+            } else {
+                mobileInput.pattern = "[0-9]{6,15}";
+                mobileInput.maxLength = 15;
+                mobileError.textContent =
+                    "Enter a number containing 6 to 15 digits.";
+            }
+
+            mobileInput.value = "";
+            mobileError.classList.remove("show");
+        }
+
+
+        /* ---------- Find a country from the IPInfo response ---------- */
+
+        function selectCountryFromIP(country) {
+            const countryUpper =
+                String(country || "").toUpperCase();
+
+            const matchingOption =
+                countryOptions.find(
+                    option => option.value === countryUpper
+                );
+
+            if (matchingOption) {
+                countryCode.value = countryUpper;
+            } else {
+                countryCode.value = "IN";
+            }
+
+            updateCountrySettings();
+        }
+
+
+        /* ---------- Call IPInfo only when the pop-up opens ---------- */
+
+        async function loadVisitorLocation() {
+            if (ipInfoLoaded) {
+                return;
+            }
+
+            ipInfoLoaded = true;
+
+            try {
+                let apiURL = "https://ipinfo.io/json";
+
+                if (IPINFO_TOKEN.trim() !== "") {
+                    apiURL += "?token=" +
+                        encodeURIComponent(IPINFO_TOKEN);
+                }
+
+                const response = await fetch(apiURL);
+
+                if (!response.ok) {
+                    throw new Error("IPInfo request failed");
+                }
+
+                const ipInfo = await response.json();
+
+                console.log("Full IPInfo reply:", ipInfo);
+
+                visitorInfo = {
+                    city: ipInfo.city || "",
+                    region: ipInfo.region || "",
+                    country: ipInfo.country || ""
+                };
+
+                selectCountryFromIP(ipInfo.country);
+
+            } catch (error) {
+                console.log(
+                    "IPInfo lookup failed. Continuing with India as default."
+                );
+
+                visitorInfo = {
+                    city: "",
+                    region: "",
+                    country: ""
+                };
+
+                countryCode.value = "IN";
+                updateCountrySettings();
+            }
+        }
+
+
+        /* ---------- Open the enquiry pop-up ---------- */
+
+        connectButton.addEventListener("click", function () {
+            enquiryModal.classList.add("active");
+
+            successMessage.classList.remove("show");
+
+            loadVisitorLocation();
+
+            setTimeout(function () {
+                document.getElementById("name").focus();
+            }, 100);
+        });
+
+
+        /* ---------- Close the enquiry pop-up ---------- */
+
+        function closeModal() {
+            enquiryModal.classList.remove("active");
+        }
+
+        closeButton.addEventListener("click", closeModal);
+
+
+        /* ---------- Close the pop-up with the Escape key ---------- */
+
+        document.addEventListener("keydown", function (event) {
+            if (
+                event.key === "Escape" &&
+                enquiryModal.classList.contains("active")
+            ) {
+                closeModal();
+            }
+        });
+
+
+        /* ---------- Close when clicking outside the pop-up ---------- */
+
+        enquiryModal.addEventListener("click", function (event) {
+            if (event.target === enquiryModal) {
+                closeModal();
+            }
+        });
+
+
+        /* ---------- Change the flag when the country changes ---------- */
+
+        countryCode.addEventListener("change", function () {
+            updateCountrySettings();
+        });
+
+
+        /* ---------- Check email while the user enters it ---------- */
+
+        emailInput.addEventListener("input", function () {
+            const email = emailInput.value.trim();
+
+            if (email === "" || EMAIL_REGEX.test(email)) {
+                emailError.classList.remove("show");
+            } else {
+                emailError.textContent =
+                    "Please enter a valid email address.";
+
+                emailError.classList.add("show");
+            }
+        });
+
+
+        /* ---------- Allow only numbers in the mobile box ---------- */
+
+        mobileInput.addEventListener("input", function () {
+            mobileInput.value =
+                mobileInput.value.replace(/\D/g, "");
+
+            validateMobile(false);
+        });
+
+
+        /* ---------- Validate the mobile number ---------- */
+
+        function validateMobile(showError) {
+            const selectedCountry =
+                countryCode.value;
+
+            const number =
+                mobileInput.value.trim();
+
+            let isValid = false;
+
+            if (selectedCountry === "IN") {
+                isValid =
+                    /^[6-9][0-9]{9}$/.test(number);
+            } else {
+                isValid =
+                    /^[0-9]{6,15}$/.test(number);
+            }
+
+            if (isValid || number === "") {
+                mobileError.classList.remove("show");
+                return isValid;
+            }
+
+            if (showError) {
+                if (selectedCountry === "IN") {
+                    mobileError.textContent =
+                        "India: enter exactly 10 digits starting with 6, 7, 8 or 9.";
+                } else {
+                    mobileError.textContent =
+                        "Enter a number containing 6 to 15 digits.";
+                }
+
+                mobileError.classList.add("show");
+            }
+
+            return false;
+        }
+
+
+        /* ---------- Submit the enquiry form ---------- */
+
+        enquiryForm.addEventListener("submit", async function (event) {
+            event.preventDefault();
+
+            emailError.classList.remove("show");
+            mobileError.classList.remove("show");
+            successMessage.classList.remove("show");
+
+            const name =
+                document.getElementById("name").value.trim();
+
+            const email =
+                emailInput.value.trim();
+
+            const mobile =
+                mobileInput.value.trim();
+
+            const enquiry =
+                document.getElementById("enquiry").value.trim();
+
+
+            /* ---------- Check all required fields ---------- */
+
+            if (
+                !name ||
+                !email ||
+                !mobile ||
+                !enquiry
+            ) {
+                alert("Please fill in all required fields.");
+                return;
+            }
+
+
+            /* ---------- Check the email ---------- */
+
+            if (!EMAIL_REGEX.test(email)) {
+                emailError.textContent =
+                    "Please enter a valid email address.";
+
+                emailError.classList.add("show");
+
+                return;
+            }
+
+
+            /* ---------- Check the mobile number ---------- */
+
+            if (!validateMobile(true)) {
+                return;
+            }
+
+
+            /* ---------- Stop if the webhook URL is not configured ---------- */
+
+            if (
+                WEBHOOK_URL ===
+                "PASTE_YOUR_N8N_WEBHOOK_URL_HERE"
+            ) {
+                alert(
+                    "Please add your n8n webhook URL to WEBHOOK_URL before sending."
+                );
+
+                return;
+            }
+
+
+            /* ---------- Get the selected country dial code ---------- */
+
+            const selectedOption =
+                countryCode.options[
+                    countryCode.selectedIndex
+                ];
+
+            const dialCode =
+                selectedOption.dataset.dial;
+
+
+            /* ---------- Build the JSON data ---------- */
+
+            const data = {
+                name: name,
+                email: email,
+                mobile: dialCode + " " + mobile,
+                enquiry: enquiry,
+                source: "CV website",
+                visitor: {
+                    city: visitorInfo.city || "",
+                    region: visitorInfo.region || "",
+                    country: visitorInfo.country || ""
+                }
+            };
+
+
+            /* ---------- Print the JSON in the browser console ---------- */
+
+            console.log("Enquiry JSON:", data);
+
+
+            /* ---------- Show sending status ---------- */
+
+            submitButton.disabled = true;
+            submitButton.textContent = "Sending...";
+
+
+            try {
+
+                /* ---------- Send the JSON to n8n ---------- */
+
+                const response = await fetch(
+                    WEBHOOK_URL,
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(data)
+                    }
+                );
+
+
+                /* ---------- Handle successful response ---------- */
+
+                if (response.ok) {
+
+                    successMessage.textContent =
+                        "Thank you, " +
+                        name +
+                        ". Your enquiry has been received.";
+
+                    successMessage.classList.add("show");
+
+                    enquiryForm.reset();
+
+                    countryCode.value = "IN";
+
+                    updateCountrySettings();
+
+                    return;
+                }
+
+
+                /* ---------- Handle n8n status 400 ---------- */
+
+                if (response.status === 400) {
+
+                    let errorData = {};
+
+                    try {
+                        errorData = await response.json();
+                    } catch (jsonError) {
+                        errorData = {};
+                    }
+
+                    const message =
+                        errorData.message ||
+                        "Your enquiry could not be submitted. Please check the information and try again.";
+
+                    const n8nError =
+                        document.createElement("div");
+
+                    n8nError.className =
+                        "error-message show";
+
+                    n8nError.textContent =
+                        message;
+
+                    enquiryForm.insertBefore(
+                        n8nError,
+                        submitButton
+                    );
+
+                    setTimeout(function () {
+                        n8nError.remove();
+                    }, 7000);
+
+                    return;
+                }
+
+
+                /* ---------- Handle other server errors ---------- */
+
+                throw new Error(
+                    "The server returned an unexpected response."
+                );
+
+            } catch (error) {
+
+                /* ---------- Show a friendly error message ---------- */
+
+                const friendlyError =
+                    document.createElement("div");
+
+                friendlyError.className =
+                    "error-message show";
+
+                friendlyError.textContent =
+                    "Sorry, your enquiry could not be sent right now. Please try again later.";
+
+                enquiryForm.insertBefore(
+                    friendlyError,
+                    submitButton
+                );
+
+                setTimeout(function () {
+                    friendlyError.remove();
+                }, 7000);
+
+                console.error(
+                    "Enquiry submission error:",
+                    error
+                );
+
+            } finally {
+
+                /* ---------- Restore the submit button ---------- */
+
+                submitButton.disabled = false;
+                submitButton.textContent = "Submit";
+            }
+        });
+
+
+        /* ---------- Set India as the initial country ---------- */
+
+        updateCountrySettings();
+
+    </script>
+
+</body>
+</html>
+
